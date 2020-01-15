@@ -1,35 +1,34 @@
 <template>
   <div id="app">
-    <div class="container">
-      <div class="wrapper">
-        <p class="text-center">Selected Date: {{ formattedDate }}</p>
+    <p>{{ $t("message.hello") }}</p>
+
+        <p class="text-center">{{ $t("message.selectedDate") }}: {{ formattedDate }}</p>
         <AppCalendar v-model="curr" />
-      </div>
-
-    </div>
-
+        <LocaleChanger />
   </div>
 </template>
 
 <script>
     import AppCalendar from "./assets/components/Calendar";
+    import LocaleChanger from "./assets/components/Localechanger";
 
-export default {
-  name: 'app',
-    components: {
-        AppCalendar
-    },
-    data () {
-      return {
-          curr: new Date(),
-      }
-    },
-    computed: {
-        formattedDate() {
-            return dateFns.format(this.curr, 'DD/MM/YYYY');
-        }
-    },
-}
+    export default {
+      name: 'app',
+        components: {
+            AppCalendar,
+            LocaleChanger
+        },
+        data () {
+          return {
+              curr: new Date()
+          }
+        },
+        computed: {
+            formattedDate() {
+                return dateFns.format(this.curr, 'DD/MM/YYYY');
+            }
+        },
+    }
 </script>
 
 <style lang="scss">

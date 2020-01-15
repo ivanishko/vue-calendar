@@ -1,5 +1,6 @@
 <template  id="calendar">
-  <div class="calendar">
+  <div>
+    <div class="calendar">
     <header class="header">
       <button @click="previousMonth">&lt;&lt;</button>
       <span>{{ currentMonthLabel }} {{ currentYear }}</span>
@@ -15,17 +16,11 @@
         {{ day.date | formatDateToDay }}
       </button>
     </div>
+    </div>
   </div>
 </template>
 
 <script>
-
-    const DAY_LABELS = ['S', 'M', 'T', 'W', 'Th', 'F', 'S'];
-    const MONTH_LABELS = [
-        "January", "February", "March",
-        "April", "May", "June",
-        "July", "August", "September",
-        "October", "November", "December"];
 
     export default {
         data() {
@@ -33,11 +28,9 @@
                 today: null,
                 selectedDate: null,
                 currDateCursor: null,
-                dayLabels: null,
             };
         },
         created() {
-            this.dayLabels = DAY_LABELS.slice();
             this.today = new Date();
             this.selectedDate = this.today;
             this.currDateCursor = this.today;
@@ -56,7 +49,10 @@
                 return this.currDateCursor.getFullYear();
             },
             currentMonthLabel() {
-                return MONTH_LABELS[this.currentMonth];
+                return this.$t("message.months")[this.currentMonth];
+            },
+            dayLabels() {
+                return this.$t("message.days");
             },
             dates() {
                 const cursorDate = this.currDateCursor;
@@ -69,13 +65,14 @@
 
                 return dateFns.eachDay(startDate, endDate).map(date => ({
                     date,
-                    isCurrentMonth:  dateFns.isSameMonth(cursorDate, date),
+                    isCurrentMonth: dateFns.isSameMonth(cursorDate, date),
                     isToday: dateFns.isToday(date),
                     isSelected: dateFns.isSameDay(this.selectedDate, date)
                 }));
             },
         },
         mounted() {
+
             if (this.startDate) {
                 this.currDateCursor = this.startDate;
                 this.selectedDate = this.startDate;
@@ -84,7 +81,7 @@
         methods: {
             dayClassObj(day) {
                 return {
-                    'today' : day.isToday,
+                    'today': day.isToday,
                     'current': day.isCurrentMonth,
                     'selected': day.isSelected,
                 };
@@ -105,11 +102,12 @@
                 }
             }
         },
-        filters: {
-            formatDateToDay(val) {
-                return dateFns.format(val, 'D');
+            filters: {
+                formatDateToDay(val) {
+                    return dateFns.format(val, 'D');
+                }
             }
-        }
+
     }
 </script>
 
