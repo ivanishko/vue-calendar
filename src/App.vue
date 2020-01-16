@@ -1,10 +1,12 @@
 <template>
   <div id="app">
+    <LocaleChanger />
     <p>{{ $t("message.hello") }}</p>
+        <AppCalendar />
+    <footer>
+      <a href="https://github.com/ivanishko/vue-calendar" target="_blank">Source Github</a>
+    </footer>
 
-        <p class="text-center">{{ $t("message.selectedDate") }}: {{ formattedDate }}</p>
-        <AppCalendar v-model="curr" />
-        <LocaleChanger />
   </div>
 </template>
 
@@ -18,15 +20,13 @@
             AppCalendar,
             LocaleChanger
         },
-        data () {
-          return {
-              curr: new Date()
+        data() {
+            return {
+                curr: new Date()
           }
         },
         computed: {
-            formattedDate() {
-                return dateFns.format(this.curr, 'DD/MM/YYYY');
-            }
+
         },
     }
 </script>
@@ -58,4 +58,8 @@ li {
 a {
   color: #42b983;
 }
+  footer {
+    margin-top: 100px ;
+
+  }
 </style>

@@ -1,7 +1,11 @@
 <template  id="calendar">
   <div>
+    <p class="text-center">{{ $t("message.selectedDate") }}: {{ formattedDate }}</p>
+    {{startDate}}
     <div class="calendar">
+
     <header class="header">
+
       <button @click="previousMonth">&lt;&lt;</button>
       <span>{{ currentMonthLabel }} {{ currentYear }}</span>
       <button @click="nextMonth">&gt;&gt;</button>
@@ -28,17 +32,20 @@
                 today: null,
                 selectedDate: null,
                 currDateCursor: null,
+                dateFromInput: null
             };
         },
         created() {
+            //let dateFromInput = new Date('2020-01-01');
+            this.today = this.dateFromInput ? new Date(this.dateFromInput) : new Date();
             this.today = new Date();
             this.selectedDate = this.today;
             this.currDateCursor = this.today;
         },
         props: {
             startDate: {
-                required: false,
-                type: Date,
+                  required: false,
+                  type: Date,
             }
         },
         computed: {
@@ -70,6 +77,9 @@
                     isSelected: dateFns.isSameDay(this.selectedDate, date)
                 }));
             },
+            formattedDate() {
+                return dateFns.format(this.selectedDate, 'DD/MM/YYYY');
+            }
         },
         mounted() {
 
@@ -158,6 +168,7 @@
     padding: 0.25rem 0.5rem 1rem 0.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-top: 20px;
 
   > .top {
     grid-column: 1 / span 7;
