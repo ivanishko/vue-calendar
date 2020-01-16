@@ -1,7 +1,7 @@
 <template  id="calendar">
   <div>
     <p class="text-center">{{ $t("message.selectedDate") }}: {{ formattedDate }}</p>
-    {{startDate}}
+<!--    {{inputDate}}-->
     <div class="calendar">
 
     <header class="header">
@@ -37,13 +37,13 @@
         },
         created() {
             //let dateFromInput = new Date('2020-01-01');
-            this.today = this.dateFromInput ? new Date(this.dateFromInput) : new Date();
+            //this.today = this.inputDate ? new Date(this.inputDate ) : new Date();
             this.today = new Date();
             this.selectedDate = this.today;
             this.currDateCursor = this.today;
         },
         props: {
-            startDate: {
+            inputDate: {
                   required: false,
                   type: Date,
             }

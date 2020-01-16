@@ -22,7 +22,6 @@
         },
         data() {
             return {
-                curr: new Date()
           }
         },
         computed: {
