@@ -10,6 +10,7 @@ const messages = {
       hello: 'Hello world',
       selectedDate: 'Selected date',
       days: ['S', 'M', 'T', 'W', 'Th', 'F', 'S'],
+      props: 'Props',
       months: [
         "January", "February", "March",
         "April", "May", "June",
@@ -23,6 +24,7 @@ const messages = {
       hello: 'Привет, Мир',
       selectedDate: 'Выбранная дата',
       days: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      props: 'Пропс',
       months: [
         "Январь", "Февраль", "Март",
         "Апрель", "Май", "Июнь",
@@ -35,6 +37,7 @@ const messages = {
       hello: 'Привіт, світ',
       selectedDate: 'Обрана дата',
       days: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      props: 'Пропс',
       months: [
         "Січень", "Лютий", " Березень",
         "Квітень", "Травень", " Червень",

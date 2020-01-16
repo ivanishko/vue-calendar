@@ -1,7 +1,7 @@
 <template  id="calendar">
   <div>
     <p class="text-center">{{ $t("message.selectedDate") }}: {{ formattedDate }}</p>
-<!--    {{inputDate}}-->
+      {{$t("message.props")}}: {{inputDate}}
     <div class="calendar">
 
     <header class="header">
@@ -36,14 +36,15 @@
             };
         },
         created() {
-            //let dateFromInput = new Date('2020-01-01');
-            //this.today = this.inputDate ? new Date(this.inputDate ) : new Date();
-            this.today = new Date();
+            this.today = this.inputDate ? new Date(this.inputDate ) : new Date();
             this.selectedDate = this.today;
             this.currDateCursor = this.today;
         },
         props: {
             inputDate: {
+
+            },
+            startDate: {
                   required: false,
                   type: Date,
             }
@@ -91,7 +92,7 @@
         methods: {
             dayClassObj(day) {
                 return {
-                    'today': day.isToday,
+                    //'today': day.isToday,
                     'current': day.isCurrentMonth,
                     'selected': day.isSelected,
                 };
