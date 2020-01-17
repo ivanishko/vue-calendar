@@ -1,7 +1,7 @@
 <template  id="calendar">
   <div>
     <p class="text-center">{{ $t("message.selectedDate") }}: {{ formattedDate }}</p>
-      {{$t("message.props")}}: {{inputDate}}
+    <p v-show="propsDate">{{$t("message.props")}}: {{propsDate}} </p>
     <div class="calendar">
 
     <header class="header">
@@ -32,16 +32,19 @@
                 today: null,
                 selectedDate: null,
                 currDateCursor: null,
-                dateFromInput: null
+                inputFromDate: null
             };
         },
         created() {
-            this.today = this.inputDate ? new Date(this.inputDate ) : new Date();
+            if (this.propsDate) {
+                this.inputFromDate = new Date(this.propsDate );
+            }
+            this.today = this.propsDate ? this.inputFromDate  : new Date();
             this.selectedDate = this.today;
             this.currDateCursor = this.today;
         },
         props: {
-            inputDate: {
+            propsDate: {
 
             },
             startDate: {
@@ -74,7 +77,7 @@
                 return dateFns.eachDay(startDate, endDate).map(date => ({
                     date,
                     isCurrentMonth: dateFns.isSameMonth(cursorDate, date),
-                    isToday: dateFns.isToday(date),
+                    isToday: (this.inputFromDate) ? dateFns.isSameDay(this.inputFromDate, date) :  dateFns.isToday(date),
                     isSelected: dateFns.isSameDay(this.selectedDate, date)
                 }));
             },
@@ -92,7 +95,7 @@
         methods: {
             dayClassObj(day) {
                 return {
-                    //'today': day.isToday,
+                    'today': day.isToday,
                     'current': day.isCurrentMonth,
                     'selected': day.isSelected,
                 };

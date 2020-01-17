@@ -2,7 +2,7 @@
   <div id="app">
     <LocaleChanger />
     <p>{{ $t("message.hello") }}</p>
-        <AppCalendar inputDate="2020-01-01" />
+        <AppCalendar propsDate="2020-01-04" />
     <footer>
       <a href="https://github.com/ivanishko/vue-calendar" target="_blank">Source Github</a>
       <a href="https://yadi.sk/d/xHF5m9_j4LpuJg" target="_blank">Video Yandex Disk</a>
