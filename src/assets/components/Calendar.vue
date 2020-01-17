@@ -108,7 +108,6 @@
             },
             setSelectedDate(day) {
                 this.selectedDate = day.date;
-                this.$emit('input', this.selectedDate);
                 // change calendar to correct month if they select previous or next month's days
                 if (!day.isCurrentMonth) {
                     const selectedMonth = dateFns.getMonth(this.selectedDate);
